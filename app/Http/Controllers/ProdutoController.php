@@ -15,7 +15,7 @@ class ProdutoController extends Controller
         return view('admin/products/listAll', compact('products'));
     }
 
-    public function listAllById($id)
+    public function listById($id)
     {
         $product = Produto::where('id', $id)->first();
         //dd($product);
