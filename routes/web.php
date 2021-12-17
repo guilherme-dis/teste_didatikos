@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', [\App\Http\Controllers\ProdutoController::class, 'listAll']);
-Route::get('/products/{id}', [\App\Http\Controllers\ProdutoController::class, 'listAllById']);
+Route::get('/products/create',[ProdutoController::class,'create'])->name('products.create');//Para auxiliar no cadastro enquanto não tem o vue
+
+Route::post('/products',[ProdutoController::class,'save'])->name('Products.save');//Salva um produto
+Route::get('/products', [ProdutoController::class, 'listAll'])->name('products.listall');//Lista todos os produtos
+Route::get('/products/{id}', [ProdutoController::class, 'listAllById'])->name('products.listbyid');//Lista um produto por id
+
 Route::get('/', function () {
     return view('welcome');
 });
