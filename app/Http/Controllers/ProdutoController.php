@@ -10,10 +10,7 @@ class ProdutoController extends Controller
 {
     public function listAll()
     {
-        $products = Produto::latest()->paginate();
-        //dd($products);
-
-        return view('admin/products/listAll', compact('products'));
+        return Produto::latest()->paginate();
     }
 
     public function listById($id)
@@ -43,17 +40,19 @@ class ProdutoController extends Controller
             return redirect()->route('products.listAll');
         $produto->delete();
         //TODO fazer essa mensagem abaixo para todos
-        return redirect()->route('products.listall')->with('message',"Post deletado");
+        return redirect()->route('products.listall')->with('message', "Post deletado");
     }
-    public function edit($id){
-        if(!$produto=Produto::find($id)){
+    public function edit($id)
+    {
+        if (!$produto = Produto::find($id)) {
             return redirect()->route('products.listAll');
         }
-        return view('admin.products.edit',compact('produto'));
+        return view('admin.products.edit', compact('produto'));
     }
 
-    public function updade(CreateUpdateProduto $request,$id){
-        if(!$produto=Produto::find($id)){
+    public function updade(CreateUpdateProduto $request, $id)
+    {
+        if (!$produto = Produto::find($id)) {
             return redirect()->route('products.listAll');
         }
         $produto->update($request->all());
