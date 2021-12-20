@@ -10,8 +10,8 @@ class CidadeController extends Controller
 {
     public function listAll()
     {
-        $cidade = Cidade::get();
-        return view('admin/cidade/listAll', compact('cidade'));
+        
+        return Cidade::get();
     }
 
     public function listById($id)

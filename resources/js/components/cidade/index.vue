@@ -1,12 +1,13 @@
 <template>
   <div class="posts">
-     <div class="post" v-for="(post,index) in posts.data" :key="index">
-        {{post.name}}
-        <p>{{post.valor}}</p>
+      <h1>cidades</h1>
+     <div class="post" v-for="(post,index) in posts" :key="index">
+        <p>{{post.nome}}</p>
         <hr>
-    </div> 
-oi
-   
+        oi
+    </div>
+
+
   </div>
 </template>
 
@@ -33,7 +34,7 @@ export default {
   methods: {
     fetchPosts() {
       axios
-        .get("/api/products")
+        .get("/api/cidades")
         .then((response) => {
           this.posts = response.data;
         })
