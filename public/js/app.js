@@ -2154,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPosts: function fetchPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/cidades").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/cities").then(function (response) {
         _this.posts = response.data;
       })["catch"](function (response) {
         console.log(response);

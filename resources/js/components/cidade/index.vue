@@ -37,7 +37,7 @@ export default {
   methods: {
     fetchPosts() {
       axios
-        .get("/api/cidades")
+        .get("/api/cities")
         .then((response) => {
           this.posts = response.data;
         })

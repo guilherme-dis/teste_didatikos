@@ -8,53 +8,29 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function listAll()
+    public function returnAll()//Devolve todos os produtos cadastrados no banco.
     {
         return Produto::latest()->paginate();
     }
 
-    public function listById($id)
+    public function returnById($id)
     {
-        //$product = Produto::where('id', $id)->first();
-
-        if (!$product = Produto::find($id)) {
-            return redirect()->route('products.listall');
-        }
-        return Produto::find($id);
+        return $product = Produto::find($id);
     }
 
-    public function create()
+
+    public function delete($id)
     {
-        return view('admin/products/create');
+        Produto::find($id)->delete();
     }
 
     public function save(CreateUpdateProduto $request)
     {
-        return Produto::create($request->all());
+        Produto::create($request->all());
     }
 
-    public function destroy($id)
-    {
-        if (!$produto = Produto::find($id))
-            return redirect()->route('products.listAll');
-        $produto->delete();
-        //TODO fazer essa mensagem abaixo para todos
-        return redirect()->route('products.listall')->with('message', "Post deletado");
-    }
-    public function edit($id)
-    {
-        if (!$produto = Produto::find($id)) {
-            return redirect()->route('products.listAll');
-        }
-        return view('admin.products.edit', compact('produto'));
-    }
+    public function put(CreateUpdateProduto $request,$id){
+        Produto::find($id)->update($request->all());
 
-    public function updade(CreateUpdateProduto $request, $id)
-    {
-        if (!$produto = Produto::find($id)) {
-            return redirect()->route('products.listAll');
-        }
-        $produto->update($request->all());
-        return redirect()->route('products.listall');
     }
 }

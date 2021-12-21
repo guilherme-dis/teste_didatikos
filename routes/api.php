@@ -17,20 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 //PRODUTO
-Route::get('/products/create',[ProdutoController::class,'create'])->name('products.create');//Para auxiliar no cadastro enquanto não tem o vue
-Route::get('/products/edit/{id}',[ProdutoController::class,'edit'])->name('procucts.edit');
-
-Route::delete('/products/{id}',[ProdutoController::class,'destroy'])->name("products.destroy");
 Route::post('/products',[ProdutoController::class,'save'])->name('Products.save');//Salva um produto
-Route::get('/products', [ProdutoController::class, 'listAll'])->name('products.listall');//Lista todos os produtos
-Route::get('/products/{id}', [ProdutoController::class, 'listById'])->name('products.listbyid');//Lista um produto por id
-Route::put('products/{id}',[ProdutoController::class,'updade'])->name('products.put');
+Route::delete('/products/{id}',[ProdutoController::class,'delete'])->name("products.delete");//Deleta um item
+Route::get('/products', [ProdutoController::class, 'returnAll'])->name('products.returnAll');//Devolve todos os Produtos cadastrados.
+Route::get('/products/{id}', [ProdutoController::class, 'returnById'])->name('products.returnById');//Devolve um elemento por id
+Route::put('products/{id}',[ProdutoController::class,'put'])->name('products.put');
 
 //CIDADE
-Route::get('/cidades/create',[CidadeController::class,'create'])->name('cidade.create');//Cadastrar cidades
-Route::get('/cidades',[CidadeController::class,'listAll'])->name("cidade.listAll");//Lista todas as cidades cadastradas
-Route::get('/cidades/{id}',[CidadeController::class,'listById'])->name("cidade.listById");//Lista uma cidade por id
-Route::post('/cidades',[CidadeController::class,'save'])->name('cidade.save');//cadastro de cidade
+Route::get('/cities',[CidadeController::class,'returnAll'])->name("cidade.returnAll");//Devolve todas as cidades
+Route::get('/cities/{id}',[CidadeController::class,'returnById'])->name("cidade.returnById");//Devolve uma cidade por id
+Route::post('/cities',[CidadeController::class,'save'])->name('cidade.save');//cadastro de cidade
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

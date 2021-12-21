@@ -8,17 +8,14 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
-    public function listAll()
+    public function returnAll()
     {
-        
-        return Cidade::get();
+        return $cidade = Cidade::get();
     }
 
-    public function listById($id)
+    public function returnById($id)
     {
-        $cidade = Cidade::where('id', $id)->first();
-
-        return view('admin/cidade/listAllById', compact('cidade'));
+        return Cidade::where('id', $id)->first();
     }
 
     public function create()
@@ -29,7 +26,6 @@ class CidadeController extends Controller
     public function save(CreateUpdateCidade $request)
     {
         Cidade::create($request->all());
-        return redirect()->route('cidade.listAll');
     }
 
 }
