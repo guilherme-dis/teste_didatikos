@@ -2,10 +2,12 @@
   <div class="posts">
       <h1>cidades</h1>
      <div class="post" v-for="(post,index) in posts" :key="index">
-        <p>{{post.nome}}</p>
-         <p>{{post.id}}</p>
+        <p>Nome: {{post.nome}}</p>
+         <p>Estado:{{post.estado}}</p>
+         <p>Pais:{{post.pais}}</p>
+         <p>Id:{{post.id}}</p>
         <hr>
-        oi
+
     </div>
 
 
