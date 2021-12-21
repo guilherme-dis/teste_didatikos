@@ -20,7 +20,7 @@ class ProdutoController extends Controller
         if (!$product = Produto::find($id)) {
             return redirect()->route('products.listall');
         }
-        return view('admin/products/listAllById', compact('product'));
+        return Produto::find($id);
     }
 
     public function create()
@@ -30,8 +30,7 @@ class ProdutoController extends Controller
 
     public function save(CreateUpdateProduto $request)
     {
-        Produto::create($request->all());
-        return redirect()->route('products.listall');
+        return Produto::create($request->all());
     }
 
     public function destroy($id)

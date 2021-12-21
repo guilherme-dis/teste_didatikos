@@ -1,14 +1,20 @@
 <template>
-  <div class="posts">
-      <h2>produtos</h2>
-     <div class="post" v-for="(post,index) in posts.data" :key="index">
-        {{post.name}}
-        <p>{{post.valor}}</p>
-        <hr>
+    <div class="posts">
+        <h2>produtos</h2>
+        <router-link to="/produtos/cadastrar"><a class="waves-effect waves-light btn" style="background-color: pink">Casdastrar Produto</a></router-link>
+        <router-link to="/produtos/list"><a class="waves-effect waves-light btn" style="background-color: pink">Pesquisar por id</a></router-link>
+        <div class="post" v-for="(post,index) in posts.data" :key="index">
+            <p>Nome: <b>{{ post.name }}</b></p>
+            <p>Valor: {{ post.valor }}</p>
+            <p>Quantidade em estoque: {{ post.qtd_estoque }}</p>
+
+            <button class="delete-btn" @click="deleteProdutos(post.id)">Deletar</button>
+            <button class="update-btn" @click="updataProdutos(post.id)">Atualizar</button>
+            <hr>
+        </div>
+
+
     </div>
-
-
-  </div>
 </template>
 
 
@@ -16,32 +22,38 @@
 import axios from "axios";
 
 export default {
-  created() {
-    this.fetchPosts();
-  },
-  data() {
-    return {
-      posts: {
-        data: [],
-        meta: {
-          current_page: 1,
-          last_page: 1,
-        },
-      },
-    };
-  },
-
-  methods: {
-    fetchPosts() {
-      axios
-        .get("/api/products")
-        .then((response) => {
-          this.posts = response.data;
-        })
-        .catch((response) => {
-          console.log(response);
-        });
+    created() {
+        this.fetchPosts();
     },
-  },
+    data() {
+        return {
+            posts: {
+                data: [],
+                meta: {
+                    current_page: 1,
+                    last_page: 1,
+                },
+            },
+        };
+    },
+
+    methods: {
+        fetchPosts() {
+            axios
+                .get("/api/products")
+                .then((response) => {
+                    this.posts = response.data;
+                })
+                .catch((response) => {
+                    console.log(response);
+                });
+        },
+        async deleteProdutos(id) {
+            const req = await fetch(`http://localhost:8000/api/products/${id}`, {
+                method: "DELETE"
+            });
+            this.fetchPosts();
+        },
+    },
 };
 </script>
