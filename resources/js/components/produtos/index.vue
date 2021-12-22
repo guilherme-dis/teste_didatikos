@@ -1,8 +1,8 @@
 <template>
     <div class="posts">
         <h2>produtos</h2>
-        <router-link to="/produtos/cadastrar"><a class="waves-effect waves-light btn" style="background-color: pink">Casdastrar Produto</a></router-link>
-        <router-link to="/produtos/list"><a class="waves-effect waves-light btn" style="background-color: pink">Pesquisar por id</a></router-link>
+        <router-link :to="{name:'cadastro'}"><a class="waves-effect waves-light btn" style="background-color: pink">Casdastrar Produto</a></router-link>
+        <router-link :to="{name:'list'}"><a class="waves-effect waves-light btn" style="background-color: pink">Pesquisar por id</a></router-link>
         <div class="post" v-for="(post,index) in posts.data" :key="index">
             <p>Nome: <b>{{ post.name }}</b></p>
             <p>Valor: {{ post.valor }}</p>

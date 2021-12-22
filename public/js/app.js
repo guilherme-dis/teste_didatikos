@@ -2414,37 +2414,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _app_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.vue */ "./resources/js/app.vue");
 /* harmony import */ var _routers_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routers/router */ "./resources/js/routers/router.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
-
-
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: _routers_router__WEBPACK_IMPORTED_MODULE_1__["default"]
-}); //Vue.component("cidade", require("./components/cidade").default);
-//Vue.component("products", require("./components/produtos").default);
-//
-// const routes = [
-//     { path: "/", component: productsComponent },
-//     { path: "/cidade", component: cidadeComponent },
-// ];
-//
-// const router = new VueRouter({
-//     routes,
-// });
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
   el: "#app",
   components: {
     App: _app_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  router: router
+  router: _routers_router__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
@@ -2493,10 +2473,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _components_produtos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/produtos */ "./resources/js/components/produtos/index.vue");
 /* harmony import */ var _components_cidade__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cidade */ "./resources/js/components/cidade/index.vue");
 /* harmony import */ var _components_produtos_cadastrar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/produtos/cadastrar */ "./resources/js/components/produtos/cadastrar.vue");
 /* harmony import */ var _components_produtos_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/produtos/list */ "./resources/js/components/produtos/list.vue");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
+
+
 
 
 
@@ -2518,7 +2503,13 @@ var routes = [{
   name: 'list',
   component: _components_produtos_list__WEBPACK_IMPORTED_MODULE_3__["default"]
 }];
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: routes
+});
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
 /***/ }),
 
@@ -21080,7 +21071,7 @@ var render = function () {
             _c(
               "li",
               [
-                _c("router-link", { attrs: { to: "/produtos" } }, [
+                _c("router-link", { attrs: { to: { name: "produtos" } } }, [
                   _vm._v("Produtos"),
                 ]),
               ],
@@ -21090,7 +21081,7 @@ var render = function () {
             _c(
               "li",
               [
-                _c("router-link", { attrs: { to: "/cidade" } }, [
+                _c("router-link", { attrs: { to: { name: "cidade" } } }, [
                   _vm._v("Cidade"),
                 ]),
               ],
@@ -21329,7 +21320,7 @@ var render = function () {
     [
       _c("h2", [_vm._v("produtos")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: "/produtos/cadastrar" } }, [
+      _c("router-link", { attrs: { to: { name: "cadastro" } } }, [
         _c(
           "a",
           {
@@ -21340,7 +21331,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: "/produtos/list" } }, [
+      _c("router-link", { attrs: { to: { name: "list" } } }, [
         _c(
           "a",
           {

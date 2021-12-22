@@ -5,10 +5,10 @@
                 <a href="#" class="brand-logo center">Controle de Produtos</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li>
-                        <router-link to="/produtos">Produtos</router-link>
+                        <router-link :to="{name:'produtos'}">Produtos</router-link>
                     </li>
                     <li>
-                        <router-link to="/cidade">Cidade</router-link>
+                        <router-link :to="{name:'cidade'}">Cidade</router-link>
                     </li>
                 </ul>
             </div>
