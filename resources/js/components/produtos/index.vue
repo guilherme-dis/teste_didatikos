@@ -7,6 +7,7 @@
             <p>Nome: <b>{{ post.name }}</b></p>
             <p>Valor: {{ post.valor }}</p>
             <p>Quantidade em estoque: {{ post.qtd_estoque }}</p>
+            <p>ID: {{ post.id }}</p>
 
             <button class="waves-effect waves-light btn" @click="deleteProdutos(post.id)">Deletar</button>
             <button class="waves-effect waves-light btn" @click="updataProdutos(post.id)">Atualizar</button>

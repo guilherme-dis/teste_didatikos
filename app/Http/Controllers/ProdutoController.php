@@ -15,7 +15,7 @@ class ProdutoController extends Controller
 
     public function returnById($id)
     {
-        return $product = Produto::find($id);
+        return Produto::find($id);
     }
 
 
