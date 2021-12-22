@@ -2285,7 +2285,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 6:
                 req = _context2.sent;
 
-              case 7:
+                _this2.$router.push('/');
+
+              case 8:
               case "end":
                 return _context2.stop();
             }

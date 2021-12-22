@@ -19,7 +19,7 @@
                 {{ c.nome }}
             </option>
         </select>
-        
+
         <input type="submit" class="waves-effect waves-light btn" style="background-color: #ee7086" value="Cadastrar Produto">
 
     </form>
@@ -63,6 +63,7 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: dataJson
             });
+            this.$router.push('/')
 
 
         }
