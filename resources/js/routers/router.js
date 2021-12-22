@@ -11,6 +11,7 @@ const routes = [
     {path: '/cidade',               name: 'cidade',         component: Cidade},
     {path: '/produtos/cadastrar',   name: 'cadastro',       component: ProdutosCadastro},
     {path: '/produtos/list',        name: 'list',           component: List},
+    {path: '/', redirect:'/produtos'}
 ];
 const router = new VueRouter({
     mode:'history',

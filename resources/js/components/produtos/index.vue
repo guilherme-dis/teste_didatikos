@@ -1,15 +1,15 @@
 <template>
     <div class="posts">
         <h2>produtos</h2>
-        <router-link :to="{name:'cadastro'}"><a class="waves-effect waves-light btn" style="background-color: pink">Casdastrar Produto</a></router-link>
-        <router-link :to="{name:'list'}"><a class="waves-effect waves-light btn" style="background-color: pink">Pesquisar por id</a></router-link>
+        <router-link :to="{name:'cadastro'}"><a class="waves-effect waves-light btn" >Casdastrar Produto</a></router-link>
+        <router-link :to="{name:'list'}"><a class="waves-effect waves-light btn" >Pesquisar por id</a></router-link>
         <div class="post" v-for="(post,index) in posts.data" :key="index">
             <p>Nome: <b>{{ post.name }}</b></p>
             <p>Valor: {{ post.valor }}</p>
             <p>Quantidade em estoque: {{ post.qtd_estoque }}</p>
 
-            <button class="delete-btn" @click="deleteProdutos(post.id)">Deletar</button>
-            <button class="update-btn" @click="updataProdutos(post.id)">Atualizar</button>
+            <button class="waves-effect waves-light btn" @click="deleteProdutos(post.id)">Deletar</button>
+            <button class="waves-effect waves-light btn" @click="updataProdutos(post.id)">Atualizar</button>
             <hr>
         </div>
 
@@ -57,3 +57,8 @@ export default {
     },
 };
 </script>
+<style scoped>
+.waves-effect{
+    background-color: #ee7086;
+}
+</style>

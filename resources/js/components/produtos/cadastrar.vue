@@ -66,7 +66,7 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: dataJson
             });
-            this.$router.Push('http://localhost:8000/produtos')
+            
 
 
         }
