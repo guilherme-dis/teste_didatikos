@@ -1,34 +1,30 @@
 <template>
     <div>
-        <h2>Cadastro de Produtos</h2>
-        <div>
-            <form id="produto-form" @submit="createProduto">
-                <div class="input-container">
-                    <label for="name">Nome:</label>
-                    <input type="text" v-model="name" name="name" id="name" required>
+    <h2>Cadastro de Produtos</h2>
 
-                    <label for="valor">Valor do produto;</label>
-                    <input type="number" v-model="valor" name="valor" id="valor" required>
-                    <label for="qtd_estoque">Quantidade em estoque:</label>
-                    <input type="number" v-model="qtd_estoque" name="qtd_estoque" id="qtd_estoque" required>
+    <form @submit="createProduto">
 
-                    <label for="cidades_id">Digite o id da cidade</label>
-                    <input type="number" v-model="cidades_id" id="cidades_id">
-                    <!--                    <select name="cidades_id" id="cidades_id" v-model="cidade">-->
-                    <!--                        <option value="">Selecione a cidade</option>-->
-                    <!--                        <option v-for="cidade in cidades" :key="cidade.id" :value="cidade.id">-->
+        <label for="name">Nome:</label>
+        <input type="text" v-model="name" id="name" required>
 
-                    <!--                        </option>-->
+        <label for="valor">Valor do produto;</label>
+        <input type="number" v-model="valor" name="valor" id="valor" required>
 
+        <label for="qtd_estoque">Quantidade em estoque:</label>
+        <input type="number" v-model="qtd_estoque" name="qtd_estoque" id="qtd_estoque" required>
+        <label>Materialize Select</label>
+        <select class="browser-default" id="cidades_id" v-model="cidades_id">
+            <option value="" disabled selected>Choose your option</option>
+            <option v-for="c in cidades_select" v-bind:value="c.id">
+                {{ c.nome }}
+            </option>
+        </select>
+        
+        <input type="submit" class="waves-effect waves-light btn" style="background-color: #ee7086" value="Cadastrar Produto">
 
-                    <!--                    </select>-->
-                    <input type="submit" class="submit-btn" value="Cadastrar Produto">
-                </div>
-
-
-            </form>
-        </div>
+    </form>
     </div>
+
 </template>
 <script>
 
@@ -36,7 +32,7 @@ export default {
     name: 'cadastrar',
     data() {
         return {
-            cidades: null,
+            cidades_select: null,
             cidade: null,
             name: null,
             valor: null,
@@ -46,10 +42,11 @@ export default {
     },
     methods: {
         async getCidades() {
-            const req = await fetch("http://localhost:8000/api/cidades");
+            const req = await fetch("http://localhost:8000/api/cities");
             const data = await req.json();
-            this.cidades = data.cidades;
 
+            this.cidades_select = data;
+            console.log(cidades_select);
         },
         async createProduto(e) {
             e.preventDefault();
@@ -66,15 +63,14 @@ export default {
                 headers: {"Content-Type": "application/json"},
                 body: dataJson
             });
-            
 
 
         }
-        },
-        mounted() {
-            this.getCidades()
-        }
-
+    },
+    mounted() {
+        this.getCidades()
     }
+
+}
 </script>
 

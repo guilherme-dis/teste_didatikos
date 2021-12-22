@@ -2212,15 +2212,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'cadastrar',
   data: function data() {
     return {
-      cidades: null,
+      cidades_select: null,
       cidade: null,
       name: null,
       valor: null,
@@ -2239,7 +2235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch("http://localhost:8000/api/cidades");
+                return fetch("http://localhost:8000/api/cities");
 
               case 2:
                 req = _context.sent;
@@ -2248,9 +2244,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 5:
                 data = _context.sent;
-                _this.cidades = data.cidades;
+                _this.cidades_select = data;
+                console.log(cidades_select);
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -21592,127 +21589,133 @@ var render = function () {
   return _c("div", [
     _c("h2", [_vm._v("Cadastro de Produtos")]),
     _vm._v(" "),
-    _c("div", [
+    _c("form", { on: { submit: _vm.createProduto } }, [
+      _c("label", { attrs: { for: "name" } }, [_vm._v("Nome:")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.name,
+            expression: "name",
+          },
+        ],
+        attrs: { type: "text", id: "name", required: "" },
+        domProps: { value: _vm.name },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.name = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "valor" } }, [_vm._v("Valor do produto;")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.valor,
+            expression: "valor",
+          },
+        ],
+        attrs: { type: "number", name: "valor", id: "valor", required: "" },
+        domProps: { value: _vm.valor },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.valor = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "qtd_estoque" } }, [
+        _vm._v("Quantidade em estoque:"),
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.qtd_estoque,
+            expression: "qtd_estoque",
+          },
+        ],
+        attrs: {
+          type: "number",
+          name: "qtd_estoque",
+          id: "qtd_estoque",
+          required: "",
+        },
+        domProps: { value: _vm.qtd_estoque },
+        on: {
+          input: function ($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.qtd_estoque = $event.target.value
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("label", [_vm._v("Materialize Select")]),
+      _vm._v(" "),
       _c(
-        "form",
-        { attrs: { id: "produto-form" }, on: { submit: _vm.createProduto } },
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.cidades_id,
+              expression: "cidades_id",
+            },
+          ],
+          staticClass: "browser-default",
+          attrs: { id: "cidades_id" },
+          on: {
+            change: function ($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function (o) {
+                  return o.selected
+                })
+                .map(function (o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.cidades_id = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+          },
+        },
         [
-          _c("div", { staticClass: "input-container" }, [
-            _c("label", { attrs: { for: "name" } }, [_vm._v("Nome:")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name",
-                },
-              ],
-              attrs: { type: "text", name: "name", id: "name", required: "" },
-              domProps: { value: _vm.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.name = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "valor" } }, [
-              _vm._v("Valor do produto;"),
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.valor,
-                  expression: "valor",
-                },
-              ],
-              attrs: {
-                type: "number",
-                name: "valor",
-                id: "valor",
-                required: "",
-              },
-              domProps: { value: _vm.valor },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.valor = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "qtd_estoque" } }, [
-              _vm._v("Quantidade em estoque:"),
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.qtd_estoque,
-                  expression: "qtd_estoque",
-                },
-              ],
-              attrs: {
-                type: "number",
-                name: "qtd_estoque",
-                id: "qtd_estoque",
-                required: "",
-              },
-              domProps: { value: _vm.qtd_estoque },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.qtd_estoque = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "cidades_id" } }, [
-              _vm._v("Digite o id da cidade"),
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.cidades_id,
-                  expression: "cidades_id",
-                },
-              ],
-              attrs: { type: "number", id: "cidades_id" },
-              domProps: { value: _vm.cidades_id },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.cidades_id = $event.target.value
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "submit-btn",
-              attrs: { type: "submit", value: "Cadastrar Produto" },
-            }),
+          _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+            _vm._v("Choose your option"),
           ]),
-        ]
+          _vm._v(" "),
+          _vm._l(_vm.cidades_select, function (c) {
+            return _c("option", { domProps: { value: c.id } }, [
+              _vm._v("\n            " + _vm._s(c.nome) + "\n        "),
+            ])
+          }),
+        ],
+        2
       ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "waves-effect waves-light btn",
+        staticStyle: { "background-color": "#ee7086" },
+        attrs: { type: "submit", value: "Cadastrar Produto" },
+      }),
     ]),
   ])
 }
